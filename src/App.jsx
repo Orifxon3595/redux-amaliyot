@@ -6,12 +6,12 @@ import Navbar from './components/Navbar'
 import ShopProducts from './components/ShopProducts'
 
 function App() {
-  const shop = useSelector((data) => data.shop)
+  const { products } = useSelector((data) => data.shop)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(updateTotal())
-  }, [shop, dispatch])
+  }, [products, dispatch])
 
   return (
     <div>

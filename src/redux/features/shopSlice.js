@@ -20,19 +20,21 @@ const shopSlice = createSlice({
             const item = state.products.find((item) => item.name === payload.name)
             item.amount--
         },
-        updateTotal: (state) => {
+        removeItem: (state, {payload}) => {
+            state.products = state.products.filter((item) => item.name !== payload.name);
+        },
+        updateTotal: (state, {payload}) => {
              let total = 0;
              let amount = 0;
              state.products.forEach((item) => {
                 amount += item.amount;
-                total += item.total;
-             });
-             
-             state.total = total;
-             state.amount = amount;
+                total += item.price * item.amount;
+            });            
+            state.amount = amount;
+            state.total = total;
         } 
     },
 });
 
-export const {incrementAmount, decrementAmount, updateTotal} = shopSlice.actions
+export const {incrementAmount, decrementAmount, updateTotal, removeItem} = shopSlice.actions
 export default shopSlice.reducer

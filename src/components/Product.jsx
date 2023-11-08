@@ -1,6 +1,6 @@
 import ShopProducts from "./ShopProducts"
 import {useDispatch} from "react-redux"
-import { incrementAmount, decrementAmount } from "../redux/features/shopSlice"
+import { incrementAmount, decrementAmount, removeItem } from "../redux/features/shopSlice"
 
 function Product({name, price, image, amount}) {
     const dispatch = useDispatch();
@@ -10,6 +10,7 @@ function Product({name, price, image, amount}) {
         <div className="w-1/2">
             <p className="text-lg font-medium">{name}</p>
             <p className="font-semibold  text-orange-500">$ {price}</p>
+            <button onClick={() => dispatch(removeItem({name}))} className="btn btn-sm btn-secondary">Remove</button>
         </div>
         <div className="flex flex-col items-center gap-1">
             <h3 className="font-medium">Amount</h3>
